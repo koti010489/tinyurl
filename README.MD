@@ -7,9 +7,9 @@
 - Maintainers
 ## Introduction
 
-As TIny URL application we need to develop follwing APIS.
-- When user enters first times longurl for website we need to create shorturl and persist into database.
-- When user enters same long url for website get short url from data base and return it.
+As TIny URL application we developed apis to support below functionality.
+- When user enters first time enter  longurl for website we need to create shorturl and persist into database.
+- When user enters same long url for website(subsequent) and get short url from data base and return it.
 - API to fetch longurl when user passes shorturl.
 - Tinyurl application will generate shorturl in below format localhost:9080/{7alphanumeric} 
 ##  Running Application In Local
