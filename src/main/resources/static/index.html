@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+      <script src=
+"https://code.jquery.com/jquery-3.5.0.js">
+    </script>
+   <script type="text/javascript">
+    function send() {
+        var createUrlData = {
+            longUrl: $("#longUrl").val()
+        }
+
+       
+
+        $.ajax({
+            url: 'http://localhost:9080/createShortUrl',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+			
+                $('#target').html(data.shortUrl);
+				
+				redirectToOriginalUrl(data.shortUrl);
+            },
+            data: JSON.stringify(createUrlData)
+        });
+		}
+		
+		function redirectToOriginalUrl( shortUrl) {
+              
+
+        $.ajax({
+            url: 'http://localhost:9080/longurl?shorturl='+shortUrl,
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+			data.longUrl = (data.longUrl.indexOf('://') === -1) ? 'http://' + data.longUrl : data.longUrl;
+			
+                $('#target').attr("href", data.longUrl);
+            }
+        });
+		}
+</script>
+   
+  </head>
+  <body>
+   
+      <table>
+        <tr>
+          <td> Enter Long URL</td>
+          <td> <input type="text"  name="longUrl" id="longUrl"></td>
+         <td><input type="submit" value="Create Tiny URL" id="submitButton" onclick="send()" />
+		  <td>
+         </td>
+		 <tr   id="shortUrlTD">
+		 <td>
+		  Short URL :- 
+		 </td>
+		 <td>
+		
+		 <a id="target" href="#" />
+		 </td>
+		 </tr>
+          
+        </tr>
+       
+        
+      </table>
+	  
+	 
+	 
+  
+  </body>
+</html>
