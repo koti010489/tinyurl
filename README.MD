@@ -1,56 +1,48 @@
+# Tiny URL Generation
 
-Gin Admin Theme
+## Contents of this file
 
-Contents of this file
+ - Introduction
+ - Running Application In Local
+- Maintainers
+## Introduction
 
-Introduction
-Requirements
-Installation
-Configuration
-Troubleshooting
-Maintainers
+As TIny URL application we need to develop follwing APIS.
+- When user enters first times longurl for website we need to create shorturl and persist into database.
+- When user enters same long url for website get short url from data base and return it.
+- API to fetch longurl when user passes shorturl.
+- Tinyurl application will generate shorturl in below format localhost:9080/{7alphanumeric} 
+##  Running Application In Local
+- Navigate to workspace in command prompt
+- Execute below commands  ./gradlew bootRun
+- Verify application is up and running in port 9080
 
+## Testing APIS
+- From PostMan invoke below posturl http://localhost:9080/createShortUrl with body to create shortversion of url
+{
+	"longUrl": "www.apple.com"
+}
+- output looks something like this
 
-Introduction
-A radically new UI layout paired with goodies like a Darkmode will give your Drupal's Admin interface a facelift. The Gin theme also includes things which are currently out of scope for Claro and/or some customisations we're experimenting with for the future. Built on the foundation of Claro from one of the lead designers of Claro & Drupal Design System.
-Gin can be used in a headless environment, as it provides a nice login screen which is missing in the default Drupal admin themes.
+{
+    "id": 1,
+    "longUrl": "www.apple.com",
+    "shortUrl": "localhost:9080/cLyqEYAkGqv",
+    "createdDate": "2023-02-22T22:29:35.636045",
+    "expiryDate": "2023-02-22T22:31:35.636045"
+}
 
-For a full description of the module, visit the project page.
-Use the Issue queue to submit bug reports and feature suggestions, or track changes.
-Documentation can be found here.
+- From PostMan invoke below geturl  http://localhost:9080/longurl?shorturl=localhost:9080/ggqnC4fHd34 
 
+- output looks something like this
 
-Requirements
-This theme requires Drupal core >= 9.0.
-Note: For all functions to work properly, it is recommended that you also install Gin Toolbar.
+{
+    "id": 1,
+    "longUrl": "www.apple.com",
+    "shortUrl": "localhost:9080/cLyqEYAkGqv",
+    "createdDate": "2023-02-22T22:29:35.636045",
+    "expiryDate": "2023-02-22T22:31:35.636045"
+}
 
-Installation
-Install as you would normally install a contributed Drupal theme. See Gin documentation or visit https://www.drupal.org/node/1897420 for further information.
-
-Set Gin as default admin theme
-
-Navigate to Admin > Appearance
-On the same page, click "Install" under Gin
-At the bottom of the page, switch the Administration theme to Gin
-
-
-Troubleshooting
-
-
-Setup Gin locally that you can compile CSS & JS files.
-nvm use && npm i
-
-
-Run dev env with watcher and debug output (development process)
-npm run dev
-
-
-Compile assets
-npm run build
-
-
-
-Maintainers
 Current maintainers:
-
-Sascha Eggenberger (@saschaeggi)
+- Yenumula Koti Reddy
